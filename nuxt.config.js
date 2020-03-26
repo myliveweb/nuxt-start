@@ -21,6 +21,10 @@ module.exports = {
   css: [
     '@node_modules/bootstrap/dist/css/bootstrap.min.css'
   ],
+
+  modules: [
+    '@nuxtjs/axios'
+  ],
   /*
   ** Build configuration
   */
