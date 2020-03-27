@@ -10,8 +10,8 @@ export const mutations = {
 
 export const actions = {
   async fetch({commit}) {
-    const users = await this.$axios.$get('https://api.zapolskiy.moscow/v1/')
-    commit('setUsers', users)
+    const users = await this.$axios.$get('/', {params: {action: 'users', cnt: 10 }})
+    commit('setUsers', users.data)
   }
 }
 

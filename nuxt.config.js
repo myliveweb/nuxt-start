@@ -25,6 +25,10 @@ module.exports = {
   modules: [
     '@nuxtjs/axios'
   ],
+
+  axios: {
+    baseURL: 'https://api.zapolskiy.moscow/v1/'
+  },
   /*
   ** Build configuration
   */
