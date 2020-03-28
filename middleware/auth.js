@@ -4,7 +4,7 @@ export default function({store, redirect, app}) {
     if(cookieToken) {
       store.commit('setToken', cookieToken)
     } else {
-      redirect('/login?message=login')
+      redirect('/login?message=enterlogin')
     }
   }
 }

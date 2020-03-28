@@ -22,9 +22,14 @@ export const actions = {
     store.dispatch('loginMiddleware', cookieToken)
     //console.log()
   },*/
-  login({commit}, data) {
-    //const dataLogin = await this.$axios.$get('/', {params: {action: 'login', cnt: 10 }})
-    commit('setToken', 'truetoken')
+  async login({commit}, data) {
+    const dataLogin = await this.$axios.$get('/', {params: {action: 'login', login: data.login, password: data.password }})
+    if(dataLogin.token && dataLogin.token.length) {
+      commit('setToken', dataLogin.token)
+      this.$router.push('/')
+    } else {
+      this.$router.push('/login?message=badlogin')
+    }
   },
   logout({commit}) {
     //const dataLogout = await this.$axios.$get('/', {params: {action: 'logout' }})
