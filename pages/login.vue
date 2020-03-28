@@ -1,22 +1,38 @@
 <template>
   <section>
-    <form>
-      <h1>Login page</h1>
+    <div v-if="$route.query.message" class="alert alert-danger" role="alert">
+      Need login first
+    </div>
+    <form @submit.prevent="onSubmit">
+      <h1>Авторизация</h1>
       <div class="form-group">
-        <input type="text" class="form-control">
+        <mdb-input label="Login" size="lg" />
       </div>
-      <p>
-        <nuxt-link to="/">To Home page</nuxt-link>
-      </p>
-      <button class="btn btn-primary" type="submit">Login</button>
+      <div class="form-group">
+        <mdb-input label="Password" size="lg" />
+      </div>
+      <div class="form-group">
+        <mdb-btn color="primary" style="margin-left: 0;" type="submit">Login</mdb-btn>
+      </div>
     </form>
   </section>
 </template>
 
 <script>
+import { mdbBtn, mdbInput } from 'mdbvue'
 export default {
   name: 'Login',
-  layout: 'empty'
+  layout: 'empty',
+  components: {
+    mdbBtn,
+    mdbInput
+  },
+  methods: {
+    onSubmit() {
+      this.$store.dispatch('login')
+      this.$router.push('/')
+    }
+  }
 }
 </script>
 

@@ -19,11 +19,13 @@ module.exports = {
   loading: { color: '#3B8070' },
 
   css: [
-    '@node_modules/bootstrap/dist/css/bootstrap.min.css'
+    'bootstrap-css-only/css/bootstrap.min.css',
+    'mdbvue/lib/css/mdb.min.css'
   ],
 
   modules: [
-    '@nuxtjs/axios'
+    '@nuxtjs/axios',
+    'cookie-universal-nuxt'
   ],
 
   axios: {
@@ -45,6 +47,9 @@ module.exports = {
           exclude: /(node_modules)/
         })
       }
+      transpile: [
+        'mdbvue/lib/components'
+      ]
     }
   }
 }

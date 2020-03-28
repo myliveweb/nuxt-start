@@ -9,10 +9,7 @@
 
 <script>
 export default {
-  name: 'Abouut',
-  date: () => {
-
-  }
+  name: 'Abouut'
 }
 </script>
 
