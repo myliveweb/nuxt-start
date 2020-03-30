@@ -1,6 +1,7 @@
 export const state = () => ({
   token: null,
-  userId: null
+  userId: null,
+  filterBtn: 'all'
 })
 
 export const mutations = {
@@ -25,6 +26,9 @@ export const mutations = {
   clearUserId(state) {
     state.userId = null
     this.$cookies.remove('user')
+  },
+  setFilterBtn(state, filter) {
+    state.filterBtn = filter
   }
 }
 
@@ -60,11 +64,15 @@ export const actions = {
     await this.$axios.$get('/', {params: {action: 'logout', userid: cookieUserId, token: cookieToken }})
     commit('clearToken')
     commit('clearUserId')
+  },
+  setFBtn({commit}, data) {
+      commit('setFilterBtn', data)
   }
 }
 
 export const getters = {
   hasToken: s => !!s.token,
   hasTokenVal: s => s.token,
-  hasUserIdVal: s => s.userId
+  hasUserIdVal: s => s.userId,
+  hasFBtnVal: s => s.filterBtn
 }
