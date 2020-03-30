@@ -18,7 +18,8 @@
       <!-- Text -->
       <p class="card-text">{{ vote.text}}</p>
       <!-- Button -->
-      <mdb-btn color="primary">Голосовать</mdb-btn>
+      <mdb-btn v-if="vote.close" class="btn btn-outline-primary waves-effect">Смотреть результаты</mdb-btn>
+      <mdb-btn v-else color="primary">Голосовать</mdb-btn>
 
     </div>
 
@@ -40,5 +41,15 @@ export default {
 <style scoped>
 .card-mb {
   margin-bottom: 2rem;
+}
+.btn-outline-primary,
+.btn-outline-primary:hover,
+.btn-outline-primary:focus,
+.btn-outline-primary:active,
+.btn-outline-primary:active:focus,
+.btn-outline-primary.active {
+    color: #4285f4 !important;
+    background-color: transparent !important;
+    border-color: #4285f4 !important;
 }
 </style>
