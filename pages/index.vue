@@ -25,23 +25,32 @@
 <script>
 import Card from '@/components/Card'
 export default {
-  data() {
-    return {
-      votes: [
-        {id: 1, name: 'Котики', text: 'Ко́шка, или дома́шняя ко́шка, — домашнее животное, одно из наиболее популярных «животных-компаньонов».', img: 'https://source.unsplash.com/544x362/?cat,cats', close: false},
-        {id: 2, name: 'Собачки', text: 'Соба́ка — домашнее животное, одно из наиболее популярных животных-компаньонов. Подвид волка.', img: 'https://source.unsplash.com/544x362/?dog,dogs', close: false},
-        {id: 3, name: 'Волчки', text: 'Волк, или серый волк, или обыкнове́нный волк, — вид хищных млекопитающих из семейства псовых.', img: 'https://source.unsplash.com/544x362/?wolf', close: true},
-        {id: 4, name: 'Бычки', text: 'Быки́ — систематическая группа полорогих парнокопытных млекопитающих, в настоящее время имеющая таксономический ранг трибы.', img: 'https://source.unsplash.com/544x362/?bulls', close: false},
-        {id: 5, name: 'Лисички', text: 'Лиси́ца — название нескольких видов млекопитающих семейства псовые. 10 видов этой группы относят к роду собственно лисиц.', img: 'https://source.unsplash.com/544x362/?fox', close: true}
-      ]
+  name: 'Home',
+  async fetch({store}) {
+    if(store.getters['votes/votes'].length === 0) {
+      await store.dispatch('votes/fetch')
     }
   },
+  /*data() {
+    return {
+      votes: [
+        {id: 1, req: 'Котики', opisanie: 'Ко́шка, или дома́шняя ко́шка, — домашнее животное, одно из наиболее популярных «животных-компаньонов».', img: 'photo-1582541990881-b2dc79eeb689.jpg', close: 0},
+        {id: 2, req: 'Собачки', opisanie: 'Соба́ка — домашнее животное, одно из наиболее популярных животных-компаньонов. Подвид волка.', img: 'photo-1541857181491-d04fd4ce7133.jpg', close: 0},
+        {id: 3, req: 'Волчки', opisanie: 'Волк, или серый волк, или обыкнове́нный волк, — вид хищных млекопитающих из семейства псовых.', img: 'photo-1558369359-32c0fb3c83cc.jpg', close: 1},
+        {id: 4, req: 'Бычки', opisanie: 'Быки́ — систематическая группа полорогих парнокопытных млекопитающих, в настоящее время имеющая таксономический ранг трибы.', img: 'photo-1558172475-f02feeed9c63.jpg', close: 0},
+        {id: 5, req: 'Лисички', opisanie: 'Лиси́ца — название нескольких видов млекопитающих семейства псовые. 10 видов этой группы относят к роду собственно лисиц.', img: 'photo-1569449047196-cebeecbc6b6b.jpg', close: 1}
+      ]
+    }
+  },*/
   components: {
     Card
   },
   computed: {
     hasFBtnVal() {
       return this.$store.getters.hasFBtnVal
+    },
+    votes() {
+      return  this.$store.getters['votes/votes']
     },
     filteredVote() {
       if(this.$store.getters.hasFBtnVal === 'all') {
@@ -56,7 +65,6 @@ export default {
         return this.votes.filter(v => v.close)
       }
     }
-
   },
   methods: {
     filterBtn(value) {

@@ -3,7 +3,7 @@
   <div class="card card-mb">
     <!-- Card image -->
     <div class="view overlay">
-      <img class="card-img-top"  :src="vote.img"
+      <img class="card-img-top"  :src="'/images/' + vote.img"
         alt="Card image cap">
       <a href="#!">
         <div class="mask rgba-white-slight"></div>
@@ -14,9 +14,9 @@
     <div class="card-body">
 
       <!-- Title -->
-      <h4 class="card-title">{{ vote.name }}</h4>
+      <h4 class="card-title">{{ vote.req }}</h4>
       <!-- Text -->
-      <p class="card-text">{{ vote.text}}</p>
+      <p class="card-text">{{ vote.opisanie}}</p>
       <!-- Button -->
       <mdb-btn v-if="vote.close" class="btn btn-outline-primary waves-effect">Смотреть результаты</mdb-btn>
       <mdb-btn v-else color="primary">Голосовать</mdb-btn>
